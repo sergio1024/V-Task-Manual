@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Timers;
+using System.Collections.Generic;
 
 class Program
 {
@@ -8,25 +9,33 @@ class Program
     private static string sourceDirectory;
     private static string replicaDirectory;
     private static string logFilePath;
+    private static int interval;
+    private static List<string> paths = new List<string>();
 
     static void Main(string[] args)
     {
         // Prompts for user inputs
         Console.WriteLine("Hello and welcome," +
             "\n\nThis program will create a copy of the folder you specify," +
-            "\ncopy all the files from the source folder to the replica folder, and it will do this periodically," +
-            "\nin an interval of time of your choice, defined in minutes." +
+            "\ncopy all the files from the source folder to the replica folder," +
+            "\ndelete all replica folder files that no longer exist in the source folder, and it will do this periodically," +
+            "\nin an interval of time of your choice, defined in minutes.\n" +
+            "\nLet's get started!" +
             "\n\nPlease enter the full path of the source directory:");
+
         sourceDirectory = Console.ReadLine();
+        Test(sourceDirectory);
 
         Console.WriteLine("Please enter the path of the replica directory:");
         replicaDirectory = Console.ReadLine();
+        Test(replicaDirectory);
 
         Console.WriteLine("Please enter the path of the log file:");
         logFilePath = Console.ReadLine();
+        Test(logFilePath);
 
         Console.WriteLine("Please enter the interval in minutes:");
-        double interval = Double.Parse(Console.ReadLine()) * 60000; // Converts minutes to milliseconds
+        TestInt();
 
         // Creates a timer with the specified interval
         timer = new System.Timers.Timer(interval);
@@ -40,11 +49,44 @@ class Program
         // Runs the task once before starting the timer
         OnTimedEvent(null, null);
 
-        // Inicia o timer
+        // Starts the timer
         timer.Start();
 
         Console.WriteLine("Press the 'k' key to exit the program...");
         while (Console.Read() != 'k') ;
+    }
+
+    // Checks if the directory path contains quotation marks, or if it has already been used
+    private static void Test(string path)
+    {
+        if (path.Contains("\""))
+        {
+            Console.WriteLine("\nPlease do not use quotation marks when entering the directory path.");
+            Environment.Exit(0);
+        }
+        else if (paths.Contains(path))
+        {
+            Console.WriteLine("\nPlease enter a different path. This one has already been used.");
+            Environment.Exit(0);
+        }
+        else
+        {
+            paths.Add(path);
+        }
+    }
+
+    // Verifies if the entered value is an integer
+    private static void TestInt()
+    {
+        string input = Console.ReadLine();   
+
+        if (!int.TryParse(input, out interval))
+        {
+            Console.WriteLine("Please enter a valid integer.");
+            Environment.Exit(0);
+        }
+
+        interval *= 60000; // Converte minutos para milissegundos
     }
 
     private static void OnTimedEvent(Object source, ElapsedEventArgs e)
