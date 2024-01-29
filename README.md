@@ -7,7 +7,7 @@ Copy all the files from the source folder to the replica folder.
 Delete all replica folder files that no longer exist in the source folder.  
 Record all actions in a log file.  
 Perform the task periodically.  
-The interval of time is of your choice, and it is defined in minutes.  
+The interval of time of automatic updates is of your choice, and it is defined in minutes.  
 
 # A few observations:
 
