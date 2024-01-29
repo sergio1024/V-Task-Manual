@@ -2,12 +2,12 @@
 
 # What does this code do:
 
-This program will create a copy of the folder you specify on the Command line.  
+This program will create a copy of the folder that you specify in the console.  
 Copy all the files from the source folder to the replica folder.  
 Delete all replica folder files that no longer exist in the source folder.  
 Record all actions in a log file.  
 Perform the task periodically.  
-The interval of time of automatic updates is of your choice, and it is defined in minutes.  
+The interval of time of automatic updates is of your choice, and it is defined in minutes tro the console. 
 
 # A few observations:
 
