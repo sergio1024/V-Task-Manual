@@ -6,8 +6,8 @@ This program will create a copy of the folder you specify on the Command line,
 copy all the files from the source folder to the replica folder,  
 delete all replica folder files that no longer exist in the source folder,  
 record all actions in a log file, and  
-perform the task periodically,  
-the interval of time is of your choice, and it is defined in minutes.  
+perform the task periodically.  
+The interval of time is of your choice, and it is defined in minutes.  
 
 # A few observations:
 
