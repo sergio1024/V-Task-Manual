@@ -1,6 +1,6 @@
-#V-Task-Manual
+# V-Task-Manual
 
-#What does this code do:
+# What does this code do:
 
 This program will create a copy of the folder you specify,
 Copy all the files from the source folder to the replica folder, and it will do this periodically,
